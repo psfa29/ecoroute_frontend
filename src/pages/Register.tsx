@@ -12,6 +12,8 @@ const Register: React.FC = () => {
     const [error, setError] = useState<string | null>(null);
     const navigate = useNavigate();
 
+    const API = import.meta.env.VITE_API_BASE_URL;
+
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
         setError(null);
@@ -22,7 +24,7 @@ const Register: React.FC = () => {
         }
 
         try {
-            const response = await fetch('http://localhost:8000/api/register', {
+            const response = await fetch(`${API}/api/register`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ username, password, email, fullName }),

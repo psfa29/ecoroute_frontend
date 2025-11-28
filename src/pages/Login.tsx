@@ -9,13 +9,15 @@ const Login: React.FC = () => {
     const [password, setPassword] = useState('');
     const [error, setError] = useState<string | null>(null);
     const navigate = useNavigate();
+    
+    const API = import.meta.env.VITE_API_BASE_URL;
 
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
         setError(null);
 
         try {
-            const response = await fetch('http://localhost:8000/api/login', {
+            const response = await fetch(`${API}/api/login`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ username, password }),
